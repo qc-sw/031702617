@@ -13,7 +13,6 @@
     <input type="file" id="files" style="display:none" onchange="fileImport(); " />
     <input type="button" id="fileImport" class="btn" value="导入文件">
     <button class="btn" onclick="downloadFile('demo.json')" >导出结果</button>
-
 </body>
 <script>
     var addressBook = "";
@@ -126,10 +125,26 @@
                 let index3 = str.lastIndexOf("区")
                 if (index3 == -1) {
                     index3 = str.indexOf("县")
+                    if(index3!=-1)
                     area[area.length] = str.substring(index2 + 1, index3 + 1)
+                    else
+                    area[area.length]="";
                 } else {
                     area[area.length] = str.substring(index2 + 1, index3 + 1)
                 }
+
+                let index4 = str.lastIndexOf("街道")
+                if (index4 == -1) {
+                    // index = str.indexOf( "路")
+                    index4 =str.indexOf("镇")
+                    // if(indexa==-1) index4=indexb;
+                    // else index4=indexa;
+                    console.log(index3);
+                    area[area.length] = str.substring(index3 + 1, index4+1)
+                } else {
+                    area[area.length] = str.substring(index3 + 1, index4+2)
+                }
+
                 return area;
             }
 
