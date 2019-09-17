@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>adressBook</title>
+    <title>addressBook</title>
     <script src="./jquery.min.js"></script>
 </head>
 
 <body>
     <input type="file" id="files" style="display:none" onchange="fileImport(); " />
     <input type="button" id="fileImport" class="btn" value="导入文件">
+    <button class="btn" onclick="downloadFile()" >导出结果</button>
 
 </body>
 <script>
-    var adressBook = "";
+    var addressBook = "";
     var output = [];
     var index = 0;
     var flag=0;
@@ -42,12 +43,14 @@
             //去掉回车换行        
             str = str.replace(/[\r\n]/g, "");
             //字符串转为数组
-            adressBook = str.split(".");
+            addressBook = str.split(".");
             //除去多余的项
-            adressBook = delspace(adressBook);
-            // console.log(adressBook)
-            encode(adressBook);
+            addressBook = delspace(addressBook);
+            // console.log(addressBook)
+            encode(addressBook);
             flag=1;
+            console.log(JSON.stringify(output))
+
         }
     }
 
@@ -154,5 +157,28 @@
 };
 
 </script>
-
+<style>
+body{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    margin-top: 250px;
+}
+.btn { /* 按钮美化 */
+	width: 270px; /* 宽度 */
+	height: 40px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 17px; /* 字体大小 */
+    margin:10px;
+}
+.btn:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #5599FF;
+}
+</style>
 </html>
